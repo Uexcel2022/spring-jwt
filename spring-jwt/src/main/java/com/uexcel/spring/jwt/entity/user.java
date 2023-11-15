@@ -19,7 +19,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(uniqueConstraints = @UniqueConstraint(name = "email_unique", columnNames = "email"))
-public class user implements UserDetails {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;

@@ -7,13 +7,17 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.uexcel.spring.jwt.entity.user;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class JWTServiceImpl {
 
     // generates token
@@ -52,4 +56,16 @@ public class JWTServiceImpl {
 
     }
 
+    // user and token validation
+    public boolean isValidToken(String token, UserDetails userDetails) {
+        final String username = extractUserName(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+
+    }
+
+    // tooken validation
+    private boolean isTokenExpired(String token) {
+        return extractClaim(token, Claims::getExpiration)
+                .before(new Date());
+    }
 }
