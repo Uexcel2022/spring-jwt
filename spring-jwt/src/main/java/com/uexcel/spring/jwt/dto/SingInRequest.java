@@ -1,9 +1,9 @@
-package com.uexcel.spring.jwt.model;
+package com.uexcel.spring.jwt.dto;
 
 import lombok.Data;
 
 @Data
-public class LoginModel {
+public class SingInRequest {
     private String email;
     private String password;
 

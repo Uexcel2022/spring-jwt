@@ -1,14 +1,16 @@
 package com.uexcel.spring.jwt.repository;
 
-import java.util.Optional;
-
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.uexcel.spring.jwt.entity.Role;
+import com.uexcel.spring.jwt.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findByEmail(String email);
+    org.springframework.boot.autoconfigure.security.SecurityProperties.User findByEmail(String email);
+
+    User findByRole(Role role);
 
 }

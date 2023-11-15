@@ -7,7 +7,7 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.uexcel.spring.jwt.entity.user;
+import com.uexcel.spring.jwt.service.JWTService;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -18,9 +18,10 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class JWTServiceImpl {
+public class JWTServiceImpl implements JWTService {
 
     // generates token
+
     public String generateToken(UserDetails userDetails) {
 
         return Jwts.builder().setSubject(userDetails.getUsername())

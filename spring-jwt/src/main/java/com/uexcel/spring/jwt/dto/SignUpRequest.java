@@ -1,9 +1,9 @@
-package com.uexcel.spring.jwt.model;
+package com.uexcel.spring.jwt.dto;
 
 import lombok.Data;
 
 @Data
-public class UserModel {
+public class SignUpRequest {
     private String firstName;
     private String lastName;
     private String email;
