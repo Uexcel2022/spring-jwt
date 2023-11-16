@@ -1,8 +1,5 @@
 package com.uexcel.spring.jwt.service.Impl;
 
-import java.util.Optional;
-
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

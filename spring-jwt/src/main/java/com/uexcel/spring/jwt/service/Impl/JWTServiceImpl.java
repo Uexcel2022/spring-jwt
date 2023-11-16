@@ -2,6 +2,7 @@ package com.uexcel.spring.jwt.service.Impl;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -69,4 +70,14 @@ public class JWTServiceImpl implements JWTService {
         return extractClaim(token, Claims::getExpiration)
                 .before(new Date());
     }
+
+    @Override
+    public String generateRefreshToken(Map<String, Object> extractClaims, UserDetails user) {
+        return Jwts.builder().setClaims(extractClaims).setSubject(user.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 604800000))
+                .signWith(getSigninKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
 }
